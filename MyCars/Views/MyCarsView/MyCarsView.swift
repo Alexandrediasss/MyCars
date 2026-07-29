@@ -9,7 +9,13 @@ import SwiftUI
 
 struct MyCarsView: View {
     var body: some View {
-        Text("Hello, MyCars!")
+        ZStack{
+            Color("backgroundColor").ignoresSafeArea()
+            ScrollView{
+                ButtonGroupComponent()
+            }
+            .padding(.horizontal,20)
+        }
     }
 }
 
