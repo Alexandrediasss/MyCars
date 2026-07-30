@@ -16,9 +16,11 @@ struct CarItemComponent: View {
         if cars.isEmpty {
             Text("No cars found")
                 .padding()
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
         } else {
             ForEach(cars) { car in
-                HStack{
+                HStack {
                     Image("ferrariPlaceholder")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -33,6 +35,20 @@ struct CarItemComponent: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
                 .padding(.top, 10)
+                
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+            }
+            .onDelete(perform: deleteCar)
+        }
+    }
+    
+    private func deleteCar(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                let carToDelete = cars[index]
+                context.delete(carToDelete)
             }
         }
     }

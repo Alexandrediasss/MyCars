@@ -12,35 +12,39 @@ struct MyCarsView: View {
     @State private var isShowing: Bool = false
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color("backgroundColor").ignoresSafeArea()
-            ScrollView{
-                ButtonGroupComponent(isShowing: $isShowing)
-                
-                HStack{
-                    Text("MyCars")
-                        .font(.title)
-                        .bold()
+            
+            List {
+                VStack(spacing: 16) {
+                    ButtonGroupComponent(isShowing: $isShowing)
                     
-                    Spacer()
+                    HStack {
+                        Text("MyCars")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                    }
+                    
+                    TextField("Search", text: $search)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
                 }
-                
-                TextField(
-                    "Search",
-                    text: $search
-                )
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+                .padding(.bottom, 10)
                 
                 CarItemComponent()
                 
             }
-            .padding(.horizontal,20)
+            .listStyle(.plain) 
+            .padding(.horizontal, 20)
         }
-        .sheet(isPresented: $isShowing){
+        .sheet(isPresented: $isShowing) {
             AddCarView(isShowing: $isShowing)
         }
     }
