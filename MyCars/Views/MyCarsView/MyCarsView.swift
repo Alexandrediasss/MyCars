@@ -41,7 +41,7 @@ struct MyCarsView: View {
             .padding(.horizontal,20)
         }
         .sheet(isPresented: $isShowing){
-            AddCarView()
+            AddCarView(isShowing: $isShowing)
         }
     }
 }

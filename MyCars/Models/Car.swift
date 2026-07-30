@@ -8,7 +8,8 @@
 import Foundation
 import SwiftData
 
-public class Car {
+@Model
+class Car {
     @Attribute(.unique) var id: UUID
     var name: String
     var dtCreated: Date
@@ -20,5 +21,4 @@ public class Car {
         self.dtCreated = dtCreated
         self.color = color
     }
-    
 }
