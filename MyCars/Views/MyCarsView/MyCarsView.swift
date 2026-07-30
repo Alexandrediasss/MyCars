@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MyCarsView: View {
     @State private var search: String = ""
+    @State private var isShowing: Bool = false
     
     var body: some View {
         ZStack{
             Color("backgroundColor").ignoresSafeArea()
             ScrollView{
-                ButtonGroupComponent()
+                ButtonGroupComponent(isShowing: $isShowing)
                 
                 HStack{
                     Text("MyCars")
@@ -34,9 +35,13 @@ struct MyCarsView: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
                 
+                CarItemComponent()
                 
             }
             .padding(.horizontal,20)
+        }
+        .sheet(isPresented: $isShowing){
+            AddCarView()
         }
     }
 }

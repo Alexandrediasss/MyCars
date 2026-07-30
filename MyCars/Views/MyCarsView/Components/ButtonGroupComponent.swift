@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ButtonGroupComponent: View {
+    @Binding var isShowing: Bool
     var body: some View {
         HStack{
             Button(action: {
-                //Alguma coisa
+                // Ação do botão
             }){
                 ZStack {
                     Circle()
@@ -28,7 +29,7 @@ struct ButtonGroupComponent: View {
             Spacer()
             
             Button(action: {
-                // Ação do Plus
+                isShowing.toggle()
             }) {
                 ZStack {
                     Circle()
@@ -39,11 +40,12 @@ struct ButtonGroupComponent: View {
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("backgroundColor"))
                 }
+                .glassEffect()
             }
         }
     }
 }
 
 #Preview {
-    ButtonGroupComponent()
+    ButtonGroupComponent(isShowing: .constant(true))
 }
