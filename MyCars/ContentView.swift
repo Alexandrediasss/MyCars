@@ -22,7 +22,7 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
-        .tint(Color("primaryColor"))
+        .tint(Color("primaryColorSystem"))
     }
 }
 

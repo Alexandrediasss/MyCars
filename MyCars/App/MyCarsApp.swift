@@ -14,5 +14,6 @@ struct MyCarsApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Car.self)
     }
 }
